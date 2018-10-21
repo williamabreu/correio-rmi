@@ -21,12 +21,29 @@ public class User implements Serializable {
         this.messageList = new LinkedList();
     }
 
-    public List<Message> getMessages() {
-        return Collections.unmodifiableList(messageList);
+    public int getMessagesNumber() {
+        return messageList.size();
+    }
+
+    public Message getOneMessage() {
+        if (messageList.isEmpty()) {
+            return null;
+        }
+        else {
+            return messageList.remove(0);
+        }
+    }
+
+    public void addMessage(Message message) {
+        messageList.add(message);
     }
 
     public boolean checkUsername(String username) {
         return this.username.equals(username);
+    }
+
+    public boolean checkUsername(User user) {
+        return this.username.equals(user.username);
     }
 
     public boolean checkPassword(String password) {

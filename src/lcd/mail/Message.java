@@ -21,6 +21,10 @@ public class Message implements Serializable {
         this.date = dateFormatter.parse(date);
     }
 
+    public String getUsernameFrom() {
+        return usernameFrom;
+    }
+
     @Override
     public String toString() {
         String out = "";
