@@ -1,6 +1,6 @@
-package client;
+package lcd.client;
 
-import mail.Mail;
+import lcd.mail.Mail;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
