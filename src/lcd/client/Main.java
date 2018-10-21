@@ -2,24 +2,26 @@ package lcd.client;
 
 import lcd.mail.Mail;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class MainClient {
+public class Main {
 
     public static void main(String[] args) {
-	    String host = "localhost";
+        String host = "localhost";
+        int port = 0;
 
-	    try {
-            Registry registry = LocateRegistry.getRegistry(host);
+        try {
+            Registry registry = LocateRegistry.getRegistry(host, port);
             Mail stub = (Mail) registry.lookup("Mail");
-
-//            String response = stub.sayHello();
-//            System.out.println("response: " + response);
+            ConsoleClient prompt = new ConsoleClient(stub);
+            prompt.startConsole();
         }
-        catch (Exception e) {
-            System.err.println("Client exception: " + e);
+        catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
     }
+
 }
