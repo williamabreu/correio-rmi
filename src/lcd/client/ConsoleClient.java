@@ -31,7 +31,7 @@ public class ConsoleClient {
         String command = "";
         boolean checkcmd;
 
-        while (command.equals("EXIT")) {
+        while (!command.equals("EXIT")) {
             console.printf(">>> ");
             command = console.readLine();
 
@@ -80,12 +80,20 @@ public class ConsoleClient {
     private void execRegisterUser() {
         String username = console.readLine("username: ");
         String password = new String(console.readPassword("password: "));
+        boolean response = false;
 
         try {
-            server.registerUser(new User(username, password));
+            response = server.registerUser(new User(username, password));
         }
         catch (RemoteException e) {
             e.printStackTrace();
+        }
+
+        if (response) {
+            console.printf("Registrado com sucesso.\n");
+        }
+        else {
+            console.printf("Falha no registro.\n");
         }
     }
 
@@ -119,20 +127,24 @@ public class ConsoleClient {
         }
 
         if (num >= 0) {
-            console.printf("%d", num);
+            console.printf("%d\n", num);
+        }
+        else {
+            console.printf("Falha na autenticação.\n");
         }
     }
 
     private void execSendMessage() {
         String usernameFrom = console.readLine("username: ");
         String password = new String(console.readPassword("password: "));
+        String usernameDestiny = console.readLine("username destino: ");
         String date = console.readLine("data: ");
         String title = console.readLine("título: ");
         String text = console.readLine("texto: ");
 
         try {
             Message msg = new Message(usernameFrom, date, title, text);
-            server.sendMessage(msg, password, usernameFrom);
+            server.sendMessage(msg, password, usernameDestiny);
         }
         catch (ParseException | RemoteException e) {
             e.printStackTrace();
