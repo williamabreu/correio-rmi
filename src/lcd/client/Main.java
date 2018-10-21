@@ -10,8 +10,8 @@ import java.rmi.registry.Registry;
 public class Main {
 
     public static void main(String[] args) {
-        String host = "localhost";
-        int port = 0;
+        String host = args[0];
+        int port = Integer.parseInt(args[1]);
 
         try {
             Registry registry = LocateRegistry.getRegistry(host, port);
