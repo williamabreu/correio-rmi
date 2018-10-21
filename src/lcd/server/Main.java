@@ -8,12 +8,11 @@ public class Main {
         try {
             MailServer server = new MailServer("localhost", 0);
             server.startServer();
+            System.out.println("Server em execução.");
         }
         catch (RemoteException e) {
             e.printStackTrace();
         }
-
-        System.out.println("Server em execução.");
     }
 
 }
