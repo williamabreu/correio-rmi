@@ -3,7 +3,6 @@ package lcd.mail;
 import lcd.security.SecurePassword;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
